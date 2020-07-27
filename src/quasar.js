@@ -4,27 +4,35 @@ import "./styles/quasar.scss";
 import lang from "quasar/lang/ja.js";
 import "@quasar/extras/material-icons/material-icons.css";
 import {
-  Quasar,
-  QLayout,
-  QHeader,
+  QBtn,
+  QCard,
+  QCardSection,
+  QForm,
   QDrawer,
-  QPageContainer,
+  QHeader,
+  QIcon,
+  QInput,
+  QItem,
+  QItemLabel,
+  QItemSection,
+  QLayout,
+  QList,
   QPage,
+  QPageContainer,
   QToolbar,
   QToolbarTitle,
-  QBtn,
-  QIcon,
-  QList,
-  QItem,
-  QItemSection,
-  QItemLabel
+  Quasar
 } from "quasar";
 
 Vue.use(Quasar, {
   config: {},
   components: {
     QLayout,
+    QCard,
+    QCardSection,
+    QForm,
     QHeader,
+    QInput,
     QDrawer,
     QPageContainer,
     QPage,
