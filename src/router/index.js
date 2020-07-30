@@ -6,14 +6,20 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/login",
     name: "Login",
     component: () => import("../views/Login.vue")
   },
   {
+    path: "/forbidden",
+    name: "Forbidden",
+    component: () => import("../views/Forbidden.vue")
+  },
+  {
     path: "/",
     name: "Home",
-    component: Home
+    component: Home,
+    meta: { authorities: ["ROLE_AGENCY"] }
   },
   {
     path: "/about",
@@ -33,25 +39,3 @@ const router = new VueRouter({
 });
 
 export default router;
-
-// router.beforeEach((to, from, next) => {
-//   if (!to.matched.length) {
-//     next("/not-found");
-//   }
-//
-//   if (to.meta && to.meta.authorities && to.meta.authorities.length > 0) {
-//     accountService
-//       .hasAnyAuthorityAndCheckAuth(to.meta.authorities)
-//       .then(value => {
-//         if (!value) {
-//           sessionStorage.setItem("requested-url", to.fullPath);
-//           next("/forbidden");
-//         } else {
-//           next();
-//         }
-//       });
-//   } else {
-//     // no authorities, so just proceed
-//     next();
-//   }
-// });

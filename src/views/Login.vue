@@ -8,16 +8,15 @@
         <div class="q-pa-md">
           <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
             <q-input
-              v-model="name"
-              label="Username*"
-              hint="Username"
+              v-model="username"
+              label="User name*"
               lazy-rules
               :rules="[val => (val && val.length > 0) || 'Required']"
             />
 
             <q-input
               type="password"
-              v-model="age"
+              v-model="password"
               label="Passwords*"
               lazy-rules
               :rules="[val => (val && val.length > 0) || 'Required']"
@@ -41,39 +40,37 @@
 </template>
 
 <script>
+import axios from "axios";
+import AccountService from "@/services/account.service";
+
 export default {
-  name: "Login",
+  username: "Login",
   data() {
     return {
-      name: null,
-      age: null,
+      username: null,
+      password: null,
 
-      accept: false
+      rememberMe: true
     };
   },
-
   methods: {
     onSubmit() {
-      if (this.accept !== true) {
-        this.$q.notify({
-          color: "red-5",
-          textColor: "white",
-          icon: "warning",
-          message: "You need to accept the license and terms first"
+      axios
+        .post("https://api.ftd-dev.nals.vn/auth/login", {
+          username: this.username,
+          password: this.password,
+          rememberMe: this.rememberMe
+        })
+        .then(data => {
+          const token = data.data.access_token;
+          localStorage.setItem("jhi-authenticationToken", token);
+          AccountService.retrieveAccount();
         });
-      } else {
-        this.$q.notify({
-          color: "green-4",
-          textColor: "white",
-          icon: "cloud_done",
-          message: "Submitted"
-        });
-      }
     },
     onReset() {
-      this.name = null;
-      this.age = null;
-      this.accept = false;
+      this.username = null;
+      this.password = null;
+      this.rememberMe = false;
     }
   }
 };

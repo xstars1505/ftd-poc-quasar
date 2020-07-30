@@ -1,13 +1,31 @@
-import Vue from "vue";
-import Vuex from "vuex";
-
-Vue.use(Vuex);
-
-export const authState = new Vuex.Store({
+export const authState = {
   state: {
-    token: localStorage.getItem("token") || ""
+    token: localStorage.getItem("token") || "",
+    logon: false,
+    userIdentity: null,
+    authenticated: false
   },
   getters: {
-    authorized: state => !!state.token
+    logon: state => {
+      return state.logon;
+    },
+    authorized: state => !!state.token,
+    account: state => state.userIdentity,
+    authenticated: state => state.authenticated
+  },
+  mutations: {
+    authenticate(state) {
+      state.logon = true;
+    },
+    authenticated(state, identity) {
+      state.userIdentity = identity;
+      state.authenticated = true;
+      state.logon = false;
+    },
+    logout(state) {
+      state.userIdentity = null;
+      state.authenticated = false;
+      state.logon = false;
+    }
   }
-});
+};
