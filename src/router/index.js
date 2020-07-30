@@ -18,8 +18,8 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
-    meta: { authorities: ["ROLE_AGENCY"] }
+    component: Home
+    // meta: { authorities: ["ROLE_AGENCY"] }
   },
   {
     path: "/about",
