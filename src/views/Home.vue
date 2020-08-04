@@ -12,18 +12,21 @@
           <q-icon class="search-icon" name="search" />
         </template>
       </q-input>
+      <LocaleSelection />
     </q-header>
 
     <q-page-container>
-      <p>home</p>
+      <span class="q-p3-xs">{{ $t("message") }}</span>
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
+import LocaleSelection from "@/components/LocaleSelection";
+
 export default {
   name: "Home",
-
+  components: { LocaleSelection },
   data() {
     return {
       text: "",

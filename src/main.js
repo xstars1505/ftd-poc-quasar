@@ -5,6 +5,7 @@ import router from "./router";
 import "./quasar";
 import store from "./store";
 import AccountService from "./services/account.service";
+import i18n from "./i18n";
 
 Vue.config.productionTip = false;
 
@@ -37,5 +38,6 @@ router.beforeEach((to, from, next) => {
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount("#app");

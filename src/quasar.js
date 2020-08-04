@@ -7,8 +7,8 @@ import {
   QBtn,
   QCard,
   QCardSection,
-  QForm,
   QDrawer,
+  QForm,
   QHeader,
   QIcon,
   QInput,
@@ -19,6 +19,7 @@ import {
   QList,
   QPage,
   QPageContainer,
+  QSelect,
   QToolbar,
   QToolbarTitle,
   Quasar
@@ -43,9 +44,13 @@ Vue.use(Quasar, {
     QList,
     QItem,
     QItemSection,
+    QSelect,
     QItemLabel
   },
   directives: {},
   plugins: {},
+  frameworks: {
+    cssAddon: true
+  },
   lang: lang
 });
