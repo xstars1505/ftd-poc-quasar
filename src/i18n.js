@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueI18n from "vue-i18n";
+import { FALLBACK_LOCALE, LOCALE } from "./app.constants";
 
 Vue.use(VueI18n);
 
@@ -21,7 +22,7 @@ function loadLocaleMessages() {
 }
 
 export default new VueI18n({
-  locale: process.env.VUE_APP_I18N_LOCALE || "zh",
-  fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || "zh",
+  locale: LOCALE || "ja",
+  fallbackLocale: FALLBACK_LOCALE || "en",
   messages: loadLocaleMessages()
 });

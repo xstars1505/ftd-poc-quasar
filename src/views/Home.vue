@@ -16,6 +16,8 @@
     </q-header>
 
     <q-page-container>
+      {{ env }}
+      {{ env2 }}
       <span class="q-p3-xs">{{ $t("message") }}</span>
     </q-page-container>
   </q-layout>
@@ -23,6 +25,7 @@
 
 <script>
 import LocaleSelection from "@/components/LocaleSelection";
+import { SERVER_API_URL } from "../app.constants";
 
 export default {
   name: "Home",
@@ -30,6 +33,8 @@ export default {
   data() {
     return {
       text: "",
+      env: process.env.NODE_ENV,
+      env2: SERVER_API_URL,
       miniState: false,
       leftDrawerOpen: true
     };

@@ -1,0 +1,12 @@
+{
+  "api_url": "https://api.ftd-dev.nals.vn/",
+  "api_chat_url": "https://rocket.ftd-dev.nals.vn/",
+  "websocket_socket": "wss://rocket.ftd-dev.nals.vn/websocket",
+  "prevent_unload_window": false,
+  "access_token_validity_in_second": 300,
+  "session_timeout_in_seconds": 7200,
+  "refresh_token_validity_in_seconds_for_remember_me": 604800,
+  "server_time_zone": "Asia/Tokyo",
+  "locale": "ja",
+  "fallback_locale": "en"
+}
