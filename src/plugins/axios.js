@@ -1,29 +1,36 @@
 import Vue from "vue";
 import axios from "axios";
-import router from "../router";
+import store from "../store";
+import { SERVER_API_URL } from "../app.constants";
+
+axios.defaults.baseURL = SERVER_API_URL;
 
 axios.interceptors.request.use(function(config) {
   // default options
   //  Loading.show();
-  console.log("sss");
   const token =
-    localStorage.getItem("jhi-authenticationToken") ||
-    sessionStorage.getItem("jhi-authenticationToken");
+    localStorage.getItem("authenticationToken") ||
+    sessionStorage.getItem("authenticationToken");
   if (token) {
     if (!config.headers) {
       config.headers = {};
     }
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.common.Authorization = `Bearer ${token}`;
   }
   return config;
 });
 axios.interceptors.response.use(
   response => response,
   error => {
-    if (error.response.status === 401 || error.response.status === 403) {
-      localStorage.removeItem("jhi-authenticationToken");
-      sessionStorage.removeItem("jhi-authenticationToken");
-      router.push("/login");
+    if (
+      error.response &&
+      (error.response.status === 401 || error.response.status === 403)
+    ) {
+      if (error.response.headers.url.contains("/logout")) {
+        store.commit("logout");
+      } else {
+        store.dispatch("logout");
+      }
     }
 
     return Promise.reject(error);

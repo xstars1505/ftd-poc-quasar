@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const authState = {
   state: {
     token: localStorage.getItem("token") || "",
@@ -26,6 +28,13 @@ export const authState = {
       state.userIdentity = null;
       state.authenticated = false;
       state.logon = false;
+      localStorage.removeItem("authenticationToken");
+      sessionStorage.removeItem("authenticationToken");
+    }
+  },
+  actions: {
+    logout({ commit }) {
+      axios.post("auth/logout", {}).then(() => commit("logout"));
     }
   }
 };

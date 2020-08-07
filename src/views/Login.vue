@@ -22,6 +22,8 @@
               :rules="[val => (val && val.length > 0) || 'Required']"
             />
 
+            <q-checkbox v-model="rememberMe" label="Remember me" />
+
             <div class="flex justify-end">
               <q-btn label="Submit" type="submit" color="primary" />
               <q-btn
@@ -49,21 +51,24 @@ export default {
     return {
       username: null,
       password: null,
-
-      rememberMe: true
+      rememberMe: false
     };
   },
   methods: {
     onSubmit() {
       axios
-        .post("https://api.ftd-dev.nals.vn/auth/login", {
+        .post("auth/login", {
           username: this.username,
           password: this.password,
           rememberMe: this.rememberMe
         })
         .then(data => {
           const token = data.data.access_token;
-          localStorage.setItem("jhi-authenticationToken", token);
+          if (this.rememberMe) {
+            localStorage.setItem("authenticationToken", token);
+          } else {
+            sessionStorage.setItem("authenticationToken", token);
+          }
           AccountService.retrieveAccount();
         });
     },

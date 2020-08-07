@@ -12,7 +12,10 @@
           <q-icon class="search-icon" name="search" />
         </template>
       </q-input>
-      <LocaleSelection />
+      <div class="flex">
+        <LocaleSelection />
+        <ProfileButton />
+      </div>
     </q-header>
 
     <q-page-container>
@@ -26,10 +29,11 @@
 <script>
 import LocaleSelection from "@/components/LocaleSelection";
 import { SERVER_API_URL } from "../app.constants";
+import ProfileButton from "@/components/ProfileButton";
 
 export default {
   name: "Home",
-  components: { LocaleSelection },
+  components: { ProfileButton, LocaleSelection },
   data() {
     return {
       text: "",

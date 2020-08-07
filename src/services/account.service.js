@@ -2,11 +2,9 @@ import axios from "axios";
 import store from "@/store";
 import router from "@/router";
 
-const SERVER_API_URL = "https://api.ftd-dev.nals.vn/";
-
 export default {
   fetch() {
-    return axios.get(SERVER_API_URL + "ftd-uaa/api/v1/me");
+    return axios.get("ftd-uaa/api/v1/me");
   },
 
   retrieveAccount() {
@@ -18,10 +16,10 @@ export default {
           if (account) {
             store.commit("authenticated", account);
             if (sessionStorage.getItem("requested-url")) {
-              router.push(sessionStorage.getItem("requested-url"));
+              router.replace(sessionStorage.getItem("requested-url"));
               sessionStorage.removeItem("requested-url");
             } else {
-              router.push("/");
+              router.replace("/");
             }
           } else {
             store.commit("logout");
@@ -32,6 +30,7 @@ export default {
         })
         .catch(() => {
           store.commit("logout");
+          router.push("/login");
           resolve(false);
         });
     });
@@ -44,11 +43,12 @@ export default {
 
     if (!this.authenticated || !this.userAuthorities) {
       const token =
-        localStorage.getItem("jhi-authenticationToken") ||
-        sessionStorage.getItem("jhi-authenticationToken");
+        localStorage.getItem("authenticationToken") ||
+        sessionStorage.getItem("authenticationToken");
       if (!store.getters.account && !store.getters.logon && token) {
         return this.retrieveAccount();
       } else {
+        router.push("/login");
         return new Promise(resolve => {
           resolve(false);
         });
@@ -63,6 +63,7 @@ export default {
       }
     }
 
+    router.push("/forbidden");
     return new Promise(resolve => {
       resolve(false);
     });

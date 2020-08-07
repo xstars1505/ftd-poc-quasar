@@ -4,9 +4,12 @@ import "./styles/quasar.scss";
 import lang from "quasar/lang/ja.js";
 import "@quasar/extras/material-icons/material-icons.css";
 import {
+  ClosePopup,
   QBtn,
+  QBtnDropdown,
   QCard,
   QCardSection,
+  QCheckbox,
   QDrawer,
   QForm,
   QHeader,
@@ -29,7 +32,9 @@ Vue.use(Quasar, {
   config: {},
   components: {
     QLayout,
+    QBtnDropdown,
     QCard,
+    QCheckbox,
     QCardSection,
     QForm,
     QHeader,
@@ -47,7 +52,7 @@ Vue.use(Quasar, {
     QSelect,
     QItemLabel
   },
-  directives: {},
+  directives: { ClosePopup },
   plugins: {},
   frameworks: {
     cssAddon: true
