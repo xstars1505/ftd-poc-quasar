@@ -3,6 +3,7 @@
     <q-btn color="primary" label="primary"></q-btn>
     <q-btn color="secondary" label="secondary"></q-btn>
     <img alt="Quasar logo" src="../assets/logo.png" />
+    {{ msg }}
   </q-page>
 </template>
 
@@ -10,6 +11,7 @@
 
 <script>
 export default {
-  name: "HelloWorld"
+  name: "HelloWorld",
+  props: ["msg"]
 };
 </script>
