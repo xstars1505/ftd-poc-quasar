@@ -1,6 +1,7 @@
 import axios from 'axios';
 import store from '@/store';
 import router from '@/router';
+import i18n from '@/i18n';
 
 export default {
   fetch() {
@@ -15,6 +16,7 @@ export default {
           const account = response.data;
           if (account) {
             store.commit('authenticated', account);
+            i18n.locale = account.lang_key;
             if (sessionStorage.getItem('requested-url')) {
               router.replace(sessionStorage.getItem('requested-url'));
               sessionStorage.removeItem('requested-url');

@@ -1,5 +1,10 @@
 <template>
-  <q-select borderless v-model="$i18n.locale" :options="langs">
+  <q-select
+    borderless
+    v-model="$i18n.locale"
+    :options="langs"
+    @input="updateLang"
+  >
     <template v-slot:selected-item="scope">
       <div class="flex items-center">
         <img class="flag q-mr-sm" :src="`/images/flags/${scope.opt}.png`" />
@@ -20,6 +25,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'LocaleSelection',
   data: () => ({
@@ -37,6 +44,11 @@ export default {
         this.langs.push(matched[1]);
       }
     });
+  },
+  methods: {
+    updateLang() {
+      axios.put(`ftd-uaa/api/v1/agency/languages/${this.$i18n.locale}`);
+    }
   }
 };
 </script>

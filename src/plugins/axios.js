@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import axios from 'axios';
-import store from '../store';
-import { SERVER_API_URL } from '../app.constants';
+import store from '@/store';
+import { SERVER_API_URL } from '@/app.constants';
 
 axios.defaults.baseURL = SERVER_API_URL;
 
@@ -26,11 +26,7 @@ axios.interceptors.response.use(
       error.response &&
       (error.response.status === 401 || error.response.status === 403)
     ) {
-      if (error.response.headers.url.contains('/logout')) {
-        store.commit('logout');
-      } else {
-        store.dispatch('logout');
-      }
+      store.commit('logout');
     }
 
     return Promise.reject(error);
