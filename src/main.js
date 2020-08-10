@@ -1,17 +1,18 @@
-import Vue from "vue";
-import "./plugins/axios";
-import App from "./App.vue";
-import router from "./router";
-import "./quasar";
-import store from "./store";
-import AccountService from "./services/account.service";
-import i18n from "./i18n";
+import Vue from 'vue';
+import './plugins/axios';
+import App from './App.vue';
+import router from './router';
+import './quasar';
+import store from './store';
+import AccountService from './services/account.service';
+import i18n from './i18n';
+import '@/filters';
 
 Vue.config.productionTip = false;
 
 router.beforeEach((to, from, next) => {
   if (!to.matched.length) {
-    next("/not-match");
+    next('/not-match');
   }
 
   if (to.meta && to.meta.authorities && to.meta.authorities.length > 0) {
@@ -44,4 +45,4 @@ new Vue({
   store,
   i18n,
   render: h => h(App)
-}).$mount("#app");
+}).$mount('#app');

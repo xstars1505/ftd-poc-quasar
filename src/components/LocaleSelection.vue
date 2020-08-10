@@ -21,13 +21,13 @@
 
 <script>
 export default {
-  name: "LocaleSelection",
+  name: 'LocaleSelection',
   data: () => ({
     langs: []
   }),
   created() {
     const locales = require.context(
-      "@/locales",
+      '@/locales',
       true,
       /[A-Za-z0-9-_,\s]+\.json$/i
     );

@@ -21,22 +21,35 @@
     <q-page-container>
       {{ env }}
       {{ env2 }}
-      <span class="q-p3-xs">{{ $t("message") }}</span>
+      <span class="q-p3-xs">{{ $t('message') }}</span>
+      {{ time }}
+      {{ format }}
+      {{ 1596946671293 | dateTime('EEEE d') }}
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-import LocaleSelection from "@/components/LocaleSelection";
-import { SERVER_API_URL } from "../app.constants";
-import ProfileButton from "@/components/ProfileButton";
+import LocaleSelection from '@/components/LocaleSelection';
+import { SERVER_API_URL } from '@/app.constants';
+import DateTimeUtil from '@/utils/date-time';
+import ProfileButton from '@/components/ProfileButton';
 
 export default {
-  name: "Home",
+  name: 'Home',
   components: { ProfileButton, LocaleSelection },
+  computed: {
+    time() {
+      return DateTimeUtil.convertDateTimeToUtcMils(this.date);
+    },
+    format() {
+      return DateTimeUtil.convertDateTimeToJapanTimezone(1596946671293);
+    }
+  },
   data() {
     return {
-      text: "",
+      date: new Date(),
+      text: '',
       env: process.env.NODE_ENV,
       env2: SERVER_API_URL,
       miniState: false,

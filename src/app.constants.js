@@ -19,3 +19,6 @@ export const RME_EXTENDING_TOKEN = process.env.RME_EXTENDING_TOKEN;
 export const NRME_EXTENDING_TOKEN = process.env.NRME_EXTENDING_TOKEN;
 export const API_CHAT_URL = process.env.API_CHAT_URL;
 export const WEBSOCKET_URL = process.env.WEBSOCKET_URL;
+
+// Other constants
+export const DATE_TIME_FORMAT = 'yyyy/mm/dd HH:mm';
