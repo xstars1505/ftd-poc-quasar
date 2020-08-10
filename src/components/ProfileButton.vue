@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: "ProfileButton",
+  name: 'ProfileButton',
   computed: {
     accountName() {
       return this.$store.getters.account && this.$store.getters.account.name;
@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.dispatch("logout").then(() => this.$router.push("/login"));
+      this.$store.dispatch('logout').then(() => this.$router.push('/login'));
     }
   }
 };

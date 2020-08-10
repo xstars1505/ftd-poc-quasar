@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const authState = {
   state: {
-    token: localStorage.getItem("token") || "",
+    token: localStorage.getItem('token') || '',
     logon: false,
     userIdentity: null,
     authenticated: false
@@ -28,13 +28,13 @@ export const authState = {
       state.userIdentity = null;
       state.authenticated = false;
       state.logon = false;
-      localStorage.removeItem("authenticationToken");
-      sessionStorage.removeItem("authenticationToken");
+      localStorage.removeItem('authenticationToken');
+      sessionStorage.removeItem('authenticationToken');
     }
   },
   actions: {
     logout({ commit }) {
-      axios.post("auth/logout", {}).then(() => commit("logout"));
+      axios.post('auth/logout', {}).then(() => commit('logout'));
     }
   }
 };

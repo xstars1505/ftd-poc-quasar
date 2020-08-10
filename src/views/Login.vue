@@ -42,11 +42,11 @@
 </template>
 
 <script>
-import axios from "axios";
-import AccountService from "@/services/account.service";
+import axios from 'axios';
+import AccountService from '@/services/account.service';
 
 export default {
-  username: "Login",
+  username: 'Login',
   data() {
     return {
       username: null,
@@ -57,7 +57,7 @@ export default {
   methods: {
     onSubmit() {
       axios
-        .post("auth/login", {
+        .post('auth/login', {
           username: this.username,
           password: this.password,
           rememberMe: this.rememberMe
@@ -65,9 +65,9 @@ export default {
         .then(data => {
           const token = data.data.access_token;
           if (this.rememberMe) {
-            localStorage.setItem("authenticationToken", token);
+            localStorage.setItem('authenticationToken', token);
           } else {
-            sessionStorage.setItem("authenticationToken", token);
+            sessionStorage.setItem('authenticationToken', token);
           }
           AccountService.retrieveAccount();
         });

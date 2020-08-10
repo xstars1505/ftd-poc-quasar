@@ -1,8 +1,8 @@
-import { authState } from "@/store/auth";
-import { createLocalVue } from "@vue/test-utils";
-import Vuex from "vuex";
+import { authState } from '@/store/auth';
+import { createLocalVue } from '@vue/test-utils';
+import Vuex from 'vuex';
 
-jest.mock("axios", () => ({
+jest.mock('axios', () => ({
   post: () => {
     return new Promise(resolve => {
       resolve(true);
@@ -10,7 +10,7 @@ jest.mock("axios", () => ({
   }
 }));
 
-describe("getters", () => {
+describe('getters', () => {
   let store;
 
   beforeEach(() => {
@@ -19,26 +19,26 @@ describe("getters", () => {
     store = new Vuex.Store(authState);
   });
 
-  it("logon", () => {
+  it('logon', () => {
     expect(store.getters.logon).toBe(false);
-    store.commit("authenticate");
+    store.commit('authenticate');
     expect(store.getters.logon).toBe(true);
   });
 
-  it("authenticated", () => {
+  it('authenticated', () => {
     expect(store.getters.authenticated).toBe(false);
-    store.commit("authenticated");
+    store.commit('authenticated');
     expect(store.getters.authenticated).toBe(true);
   });
 
-  it("account", () => {
+  it('account', () => {
     expect(store.getters.account).toBe(undefined);
-    store.commit("authenticated", { name: "aaa" });
-    expect(store.getters.account.name).toBe("aaa");
+    store.commit('authenticated', { name: 'aaa' });
+    expect(store.getters.account.name).toBe('aaa');
   });
 });
 
-describe("mutations", () => {
+describe('mutations', () => {
   let store;
 
   beforeEach(() => {
@@ -47,14 +47,14 @@ describe("mutations", () => {
     store = new Vuex.Store(authState);
   });
 
-  it("authenticate", () => {
+  it('authenticate', () => {
     expect(store.state.logon).toBe(false);
-    store.commit("authenticate");
+    store.commit('authenticate');
     expect(store.state.logon).toBe(true);
   });
 });
 
-describe("actions", () => {
+describe('actions', () => {
   let store;
   let logoutMock;
 
@@ -64,11 +64,11 @@ describe("actions", () => {
     localVue.use(Vuex);
     store = new Vuex.Store(authState);
   });
-  it("tests logout using a mock mutation", async () => {
+  it('tests logout using a mock mutation', async () => {
     store.hotUpdate({
       mutations: { logout: logoutMock }
     });
-    await store.dispatch("logout");
+    await store.dispatch('logout');
     expect(logoutMock).toHaveBeenCalled();
   });
 });

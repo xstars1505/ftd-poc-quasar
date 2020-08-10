@@ -1,8 +1,8 @@
-import Vue from "vue";
+import Vue from 'vue';
 
-import "./styles/quasar.scss";
-import lang from "quasar/lang/ja.js";
-import "@quasar/extras/material-icons/material-icons.css";
+import './styles/quasar.scss';
+import lang from 'quasar/lang/ja.js';
+import '@quasar/extras/material-icons/material-icons.css';
 import {
   ClosePopup,
   QBtn,
@@ -26,7 +26,7 @@ import {
   QToolbar,
   QToolbarTitle,
   Quasar
-} from "quasar";
+} from 'quasar';
 
 Vue.use(Quasar, {
   config: {},
