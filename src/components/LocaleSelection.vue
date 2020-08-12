@@ -8,7 +8,7 @@
     <template v-slot:selected-item="scope">
       <div class="flex items-center">
         <img class="flag q-mr-sm" :src="`/images/flags/${scope.opt}.png`" />
-        {{ scope.opt.toUpperCase() }}
+        <span class="gt-xs">{{ scope.opt.toUpperCase() }}</span>
       </div>
     </template>
     <template v-slot:option="scope">
@@ -16,7 +16,7 @@
         <q-item-section avatar>
           <img class="flag" :src="`/images/flags/${scope.opt}.png`" />
         </q-item-section>
-        <q-item-section>
+        <q-item-section class="gt-xs">
           {{ scope.opt.toUpperCase() }}
         </q-item-section>
       </q-item>

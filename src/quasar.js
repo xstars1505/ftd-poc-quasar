@@ -22,10 +22,13 @@ import {
   QList,
   QPage,
   QPageContainer,
+  QScrollArea,
   QSelect,
+  QSeparator,
   QToolbar,
   QToolbarTitle,
-  Quasar
+  Quasar,
+  Ripple
 } from 'quasar';
 
 Vue.use(Quasar, {
@@ -37,6 +40,7 @@ Vue.use(Quasar, {
     QCheckbox,
     QCardSection,
     QForm,
+    QScrollArea,
     QHeader,
     QInput,
     QDrawer,
@@ -48,11 +52,12 @@ Vue.use(Quasar, {
     QIcon,
     QList,
     QItem,
+    QSeparator,
     QItemSection,
     QSelect,
     QItemLabel
   },
-  directives: { ClosePopup },
+  directives: { ClosePopup, Ripple },
   plugins: {},
   frameworks: {
     cssAddon: true

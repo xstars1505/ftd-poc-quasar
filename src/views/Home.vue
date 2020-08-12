@@ -1,6 +1,15 @@
 <template>
-  <q-layout view="HHh Lpr lFf">
+  <q-layout view="lHh Lpr lFf">
     <q-header class="header">
+      <q-btn
+        class="drawer-button xs"
+        flat
+        @click="drawer = !drawer"
+        round
+        dense
+        icon="menu"
+      />
+
       <q-input
         v-model="text"
         dense
@@ -18,60 +27,27 @@
       </div>
     </q-header>
 
+    <Drawer />
+
     <q-page-container>
-      {{ env }}
-      {{ env2 }}
-      <span class="q-p3-xs">{{ $t('message') }}</span>
-      {{ time }}
-      {{ format }}
-      {{ 1596946671293 | dateTime('EEEE d') }}
-      <q-input
-        v-model="obj.text"
-        v-limit-full-half-width="{
-          fullSizeLength: 2,
-          halfSizeLength: 4
-        }"
-        v-only-number="{
-          upperLimit: 5,
-          lowerLimit: 1,
-          allowEmpty: true
-        }"
-      />
-      {{ obj.text }}
+      <q-page padding>
+        <p>This is home page</p>
+      </q-page>
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
 import LocaleSelection from '@/components/LocaleSelection';
-import { SERVER_API_URL } from '@/app.constants';
-import DateTimeUtil from '@/utils/date-time';
 import ProfileButton from '@/components/ProfileButton';
+import Drawer from '@/components/Drawer';
 
 export default {
   name: 'Home',
-  components: { ProfileButton, LocaleSelection },
-  computed: {
-    time() {
-      return DateTimeUtil.convertDateTimeToUtcMils(this.date);
-    },
-    format() {
-      return DateTimeUtil.convertDateTimeToJapanTimezone(1596946671293);
-    }
-  },
-  data() {
-    return {
-      date: new Date(),
-      text: '',
-      obj: {
-        text: ''
-      },
-      env: process.env.NODE_ENV,
-      env2: SERVER_API_URL,
-      miniState: false,
-      leftDrawerOpen: true
-    };
-  }
+  components: { Drawer, ProfileButton, LocaleSelection },
+  data: () => ({
+    text: ''
+  })
 };
 </script>
 
@@ -89,6 +65,10 @@ export default {
 .search-icon {
   stroke-width: 2.5px;
   margin-right: 10px;
+  color: #8392a5;
+}
+
+.drawer-button {
   color: #8392a5;
 }
 </style>
