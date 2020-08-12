@@ -5,7 +5,7 @@
 export const VERSION = process.env.VERSION;
 export const SHOW_VERSION = process.env.SHOW_VERSION;
 export const DEBUG_INFO_ENABLED = !!process.env.DEBUG_INFO_ENABLED;
-export const SERVER_API_URL = process.env.API_URL;
+export const SERVER_API_URL = 'https://api.ftd-qa.est-rouge-tech.com/'; // process.env.API_URL;
 export const LOCALE = process.env.LOCALE;
 export const FALLBACK_LOCALE = process.env.FALLBACK_LOCALE;
 export const BUILD_TIMESTAMP = process.env.BUILD_TIMESTAMP;

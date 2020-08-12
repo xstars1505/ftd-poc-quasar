@@ -25,6 +25,19 @@
       {{ time }}
       {{ format }}
       {{ 1596946671293 | dateTime('EEEE d') }}
+      <q-input
+        v-model="obj.text"
+        v-limit-full-half-width="{
+          fullSizeLength: 2,
+          halfSizeLength: 4
+        }"
+        v-only-number="{
+          upperLimit: 5,
+          lowerLimit: 1,
+          allowEmpty: true
+        }"
+      />
+      {{ obj.text }}
     </q-page-container>
   </q-layout>
 </template>
@@ -50,6 +63,9 @@ export default {
     return {
       date: new Date(),
       text: '',
+      obj: {
+        text: ''
+      },
       env: process.env.NODE_ENV,
       env2: SERVER_API_URL,
       miniState: false,

@@ -7,6 +7,7 @@ import store from './store';
 import AccountService from './services/account.service';
 import i18n from './i18n';
 import '@/filters';
+import '@/directives';
 
 Vue.config.productionTip = false;
 
