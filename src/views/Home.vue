@@ -2,36 +2,26 @@
   <q-layout view="lHh Lpr lFf">
     <q-header class="header">
       <q-btn
-        class="drawer-button xs"
+        class="drawer-button"
         flat
-        @click="drawer = !drawer"
+        @click.prevent.stop="toggleDrawer"
         round
         dense
         icon="menu"
       />
 
-      <q-input
-        v-model="text"
-        dense
-        borderless
-        placeholder="Search"
-        class="custom-search"
-      >
-        <template v-slot:prepend>
-          <q-icon class="search-icon" name="search" />
-        </template>
-      </q-input>
       <div class="flex">
         <LocaleSelection />
         <ProfileButton />
       </div>
     </q-header>
 
-    <Drawer />
+    <Drawer ref="drawer" />
 
     <q-page-container>
       <q-page padding>
         <p>This is home page</p>
+        <router-view />
       </q-page>
     </q-page-container>
   </q-layout>
@@ -45,9 +35,20 @@ import Drawer from '@/components/Drawer';
 export default {
   name: 'Home',
   components: { Drawer, ProfileButton, LocaleSelection },
-  data: () => ({
-    text: ''
-  })
+  methods: {
+    toggleDrawer() {
+      const width = document.documentElement.clientWidth;
+      if (width < 600) {
+        this.$refs.drawer.drawer = !this.$refs.drawer.drawer;
+      } else if (width >= 600 && width < 1024) {
+        this.$refs.drawer.miniState = false;
+        this.$refs.drawer.enableMiniState = true;
+      } else {
+        this.$refs.drawer.miniState = !this.$refs.drawer.miniState;
+        this.$refs.drawer.enableMiniState = !this.$refs.drawer.enableMiniState;
+      }
+    }
+  }
 };
 </script>
 

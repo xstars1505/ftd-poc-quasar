@@ -4,13 +4,12 @@
     show-if-above
     :mini="miniState"
     :mini-to-overlay="enableMiniState"
-    @mouseover="onMouseOver"
-    @mouseout="onMouseOut"
     :width="200"
     :breakpoint="599"
     bordered
+    v-click-outside="clickOutSide"
   >
-    <div class="logo">
+    <div class="logo absolute-top">
       <a
         :class="
           'logo__link ' + (enableMiniState && miniState ? 'logo--small' : '')
@@ -18,7 +17,7 @@
       ></a>
     </div>
 
-    <q-scroll-area class="fit">
+    <q-scroll-area class="scroll-area">
       <q-list padding>
         <q-item clickable v-ripple>
           <q-item-section avatar>
@@ -77,41 +76,48 @@
 </template>
 
 <script>
+import ClickOutside from 'vue-click-outside';
+
 export default {
   name: 'Drawer',
+  directives: {
+    ClickOutside
+  },
   data: () => ({
     drawer: false,
     miniState: true,
     enableMiniState: false
   }),
+  watch: {
+    $route() {
+      if (this.enableMiniState) {
+        this.miniState = true;
+      }
+    }
+  },
   created() {
     this.handleWindowResize();
     window.addEventListener('resize', () => {
       this.handleWindowResize();
     });
   },
+  beforeDestroy() {
+    window.removeEventListener('resize', () => {});
+  },
   methods: {
     handleWindowResize() {
       const width = document.documentElement.clientWidth;
-      if (width < 600 || width > 1023) {
-        setTimeout(() => {
-          this.enableMiniState = false;
-          this.miniState = false;
-        });
-      } else {
-        setTimeout(() => {
-          this.enableMiniState = true;
-          this.miniState = true;
-        });
-      }
-    },
-    onMouseOver() {
-      if (this.enableMiniState) {
+      if (width < 600) {
+        this.enableMiniState = false;
         this.miniState = false;
+      } else {
+        this.enableMiniState = true;
+        this.miniState = true;
       }
     },
-    onMouseOut() {
-      if (this.enableMiniState) {
+    clickOutSide() {
+      const width = document.documentElement.clientWidth;
+      if (width >= 600 && width < 1024 && !this.miniState) {
         this.miniState = true;
       }
     }
@@ -122,6 +128,7 @@ export default {
 <style scoped lang="scss">
 .logo {
   padding: 16px 0;
+  height: 55px;
 
   &__link {
     display: block;
@@ -135,5 +142,9 @@ export default {
     background-image: url('../assets/logo-small.svg');
     background-position: 13px center;
   }
+}
+.scroll-area {
+  height: calc(100% - 55px);
+  margin-top: 55px;
 }
 </style>

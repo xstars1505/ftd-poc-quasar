@@ -10867,6 +10867,11 @@ vue-cli-plugin-quasar@~2.0.2:
   resolved "https://registry.yarnpkg.com/vue-cli-plugin-quasar/-/vue-cli-plugin-quasar-2.0.2.tgz#4cb843baada5570c3b9cc5449641e6aa6890b35d"
   integrity sha512-wHtjjKEpTq1vAhiRHRids/DDx1r1A53q/LVc2PgeI7sycbBLDdGhY3+XnysmME+OMReecqOP1IhNC7b8hL09tA==
 
+vue-click-outside@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/vue-click-outside/-/vue-click-outside-1.1.0.tgz#48b7680b518923e701643cccb3e165854aad99eb"
+  integrity sha512-pNyvAA9mRXJwPHlHJyjMb4IONSc7khS5lxGcMyE2EIKgNMAO279PWM9Hyq0d5J4FkiSRdmFLwnbjDd5UtPizHQ==
+
 vue-eslint-parser@^7.0.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-7.1.0.tgz#9cdbcc823e656b087507a1911732b867ac101e83"
