@@ -7,7 +7,6 @@
     :width="200"
     :breakpoint="599"
     bordered
-    v-click-outside="clickOutSide"
   >
     <div class="logo absolute-top">
       <a
@@ -76,13 +75,8 @@
 </template>
 
 <script>
-import ClickOutside from 'vue-click-outside';
-
 export default {
   name: 'Drawer',
-  directives: {
-    ClickOutside
-  },
   data: () => ({
     drawer: false,
     miniState: true,
@@ -112,12 +106,6 @@ export default {
         this.miniState = false;
       } else {
         this.enableMiniState = true;
-        this.miniState = true;
-      }
-    },
-    clickOutSide() {
-      const width = document.documentElement.clientWidth;
-      if (width >= 600 && width < 1024 && !this.miniState) {
         this.miniState = true;
       }
     }

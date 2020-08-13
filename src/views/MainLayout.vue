@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header class="header">
+    <q-header class="header" @click.prevent.stop="hideDrawer">
       <q-btn
         class="drawer-button"
         flat
@@ -18,7 +18,7 @@
 
     <Drawer ref="drawer" />
 
-    <q-page-container>
+    <q-page-container @click.prevent.stop="hideDrawer">
       <q-page padding>
         <p>This is home page</p>
         <router-view />
@@ -46,6 +46,12 @@ export default {
       } else {
         this.$refs.drawer.miniState = !this.$refs.drawer.miniState;
         this.$refs.drawer.enableMiniState = !this.$refs.drawer.enableMiniState;
+      }
+    },
+    hideDrawer() {
+      const width = document.documentElement.clientWidth;
+      if (width >= 600 && width < 1024 && !this.$refs.drawer.miniState) {
+        this.$refs.drawer.miniState = true;
       }
     }
   }
