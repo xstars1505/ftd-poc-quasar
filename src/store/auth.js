@@ -1,4 +1,5 @@
 import axios from 'axios';
+import router from '@/router';
 
 export const authState = {
   state: {
@@ -30,6 +31,7 @@ export const authState = {
       state.logon = false;
       localStorage.removeItem('authenticationToken');
       sessionStorage.removeItem('authenticationToken');
+      setTimeout(() => router.push('/login'));
     }
   },
   actions: {

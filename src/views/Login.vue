@@ -43,7 +43,6 @@
 
 <script>
 import axios from 'axios';
-import AccountService from '@/services/account.service';
 
 export default {
   username: 'Login',
@@ -69,7 +68,11 @@ export default {
           } else {
             sessionStorage.setItem('authenticationToken', token);
           }
-          AccountService.retrieveAccount();
+          if (sessionStorage.getItem('requested-url')) {
+            this.$router.push(sessionStorage.getItem('requested-url'));
+          } else {
+            this.$router.push('/');
+          }
         });
     },
     onReset() {

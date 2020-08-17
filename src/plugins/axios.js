@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import axios from 'axios';
 import store from '@/store';
+import router from '@/router';
+
 import { SERVER_API_URL } from '@/app.constants';
 
 axios.defaults.baseURL = SERVER_API_URL;
@@ -27,6 +29,7 @@ axios.interceptors.response.use(
       (error.response.status === 401 || error.response.status === 403)
     ) {
       store.commit('logout');
+      sessionStorage.setItem('requested-url', router.currentRoute.fullPath);
     }
 
     return Promise.reject(error);

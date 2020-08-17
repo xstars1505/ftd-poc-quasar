@@ -20,7 +20,6 @@
 
     <q-page-container @click.prevent.stop="hideDrawer">
       <q-page padding>
-        <p>This is home page</p>
         <router-view />
       </q-page>
     </q-page-container>
@@ -33,7 +32,7 @@ import ProfileButton from '@/components/ProfileButton';
 import Drawer from '@/components/Drawer';
 
 export default {
-  name: 'Home',
+  name: 'MainLayout',
   components: { Drawer, ProfileButton, LocaleSelection },
   methods: {
     toggleDrawer() {

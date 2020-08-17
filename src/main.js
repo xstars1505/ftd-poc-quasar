@@ -16,24 +16,13 @@ router.beforeEach((to, from, next) => {
     next('/not-match');
   }
 
-  if (to.meta && to.meta.authorities && to.meta.authorities.length > 0) {
-    AccountService.hasAnyAuthorityAndCheckAuth(to.meta.authorities).then(
-      value => {
-        if (!value) {
-          // sessionStorage.setItem("requested-url", to.fullPath);
-          // if (
-          //   localStorage.getItem("authenticationToken") ||
-          //   sessionStorage.getItem("authenticationToken")
-          // ) {
-          //   next("/forbidden");
-          //   return;
-          // } else {
-          //   next("/login");
-          // }
-        } else {
-          next();
-        }
-      }
+  const authorities = to.meta && to.meta.authorities;
+  if (authorities) {
+    AccountService.identity(authorities).then(
+      url => {
+        next(url);
+      },
+      () => next(false)
     );
   } else {
     // no authorities, so just proceed

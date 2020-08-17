@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+import MainLayout from '@/views/MainLayout';
+import superUserRoutes from '@/router/super-user.routes';
+import endUserRoutes from '@/router/end-user.routes';
 
 Vue.use(VueRouter);
 
@@ -8,7 +10,17 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('../views/Login.vue')
+    component: () => import('../views/Login.vue'),
+    beforeEnter: (to, from, next) => {
+      if (
+        localStorage.getItem('authenticationToken') ||
+        sessionStorage.getItem('authenticationToken')
+      ) {
+        next('/');
+      } else {
+        next();
+      }
+    }
   },
   {
     path: '/forbidden',
@@ -17,18 +29,18 @@ const routes = [
   },
   {
     path: '/',
-    name: 'Home',
-    component: Home
-    // meta: { authorities: ["ROLE_AGENCY"] }
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About.vue')
+    name: 'MainLayout',
+    component: MainLayout,
+    children: [
+      {
+        path: '',
+        name: 'Home',
+        component: () => import('../views/Home'),
+        meta: { authorities: [] }
+      },
+      ...superUserRoutes,
+      ...endUserRoutes
+    ]
   }
 ];
 
