@@ -29,7 +29,9 @@ axios.interceptors.response.use(
       (error.response.status === 401 || error.response.status === 403)
     ) {
       store.commit('logout');
-      sessionStorage.setItem('requested-url', router.currentRoute.fullPath);
+      if (!error.config.url.includes('/logout')) {
+        sessionStorage.setItem('requested-url', router.currentRoute.fullPath);
+      }
     }
 
     return Promise.reject(error);

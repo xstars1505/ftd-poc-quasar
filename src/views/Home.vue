@@ -11,7 +11,9 @@ export default {
   components: { SUHome, EUHome },
   computed: {
     usedComponent() {
-      const role = this.$store.getters.account.roles;
+      const role =
+        (this.$store.getters.account && this.$store.getters.account.roles) ||
+        [];
       return role.includes('ROLE_AGENCY') ? 'SUHome' : 'EUHome';
     }
   }

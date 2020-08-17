@@ -20,6 +20,9 @@ router.beforeEach((to, from, next) => {
   if (authorities) {
     AccountService.identity(authorities).then(
       url => {
+        if (url === '/forbidden') {
+          sessionStorage.setItem('requested-url', to.fullPath);
+        }
         next(url);
       },
       () => next(false)

@@ -69,7 +69,13 @@ export default {
             sessionStorage.setItem('authenticationToken', token);
           }
           if (sessionStorage.getItem('requested-url')) {
-            this.$router.push(sessionStorage.getItem('requested-url'));
+            this.$router
+              .push(sessionStorage.getItem('requested-url') || '/')
+              .then(
+                () => {},
+                () => {}
+              );
+            sessionStorage.removeItem('requested-url');
           } else {
             this.$router.push('/');
           }

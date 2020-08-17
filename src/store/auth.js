@@ -31,12 +31,15 @@ export const authState = {
       state.logon = false;
       localStorage.removeItem('authenticationToken');
       sessionStorage.removeItem('authenticationToken');
-      setTimeout(() => router.push('/login'));
+      router.push('/login');
     }
   },
   actions: {
     logout({ commit }) {
-      axios.post('auth/logout', {}).then(() => commit('logout'));
+      axios.post('auth/logout', {}).then(
+        () => commit('logout'),
+        () => {}
+      );
     }
   }
 };
