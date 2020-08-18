@@ -12,7 +12,7 @@ export default {
       store.getters.account ||
       (await this.fetch().then(response => response.data));
     if (account) {
-      store.commit('authenticated', account);
+      store.commit('authenticate', account);
       i18n.locale = account.lang_key;
       if (authorities.length) {
         for (let i = 0; i < authorities.length; i++) {

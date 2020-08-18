@@ -29,7 +29,6 @@ const routes = [
   },
   {
     path: '/',
-    name: 'MainLayout',
     component: MainLayout,
     children: [
       {

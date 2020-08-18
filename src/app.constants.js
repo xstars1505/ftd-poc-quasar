@@ -22,3 +22,7 @@ export const WEBSOCKET_URL = process.env.WEBSOCKET_URL;
 
 // Other constants
 export const DATE_TIME_FORMAT = 'yyyy/mm/dd HH:mm';
+export const Authorities = {
+  SUPER_USER: 'ROLE_AGENCY',
+  END_USER: 'ROLE_USER'
+};
