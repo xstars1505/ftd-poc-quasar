@@ -12,6 +12,7 @@ import {
   QCardSection,
   QCheckbox,
   QDrawer,
+  QExpansionItem,
   QForm,
   QHeader,
   QIcon,
@@ -28,6 +29,7 @@ import {
   QSeparator,
   QToolbar,
   QToolbarTitle,
+  QTooltip,
   Quasar,
   Ripple
 } from 'quasar';
@@ -42,6 +44,7 @@ Vue.use(Quasar, {
     QCardSection,
     QCardActions,
     QForm,
+    QExpansionItem,
     QScrollArea,
     QHeader,
     QInput,
@@ -50,6 +53,7 @@ Vue.use(Quasar, {
     QPage,
     QToolbar,
     QToolbarTitle,
+    QTooltip,
     QBtn,
     QIcon,
     QList,

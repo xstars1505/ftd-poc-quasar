@@ -1,10 +1,10 @@
 <template>
-  <p>SU product list</p>
+  <p>SU packages</p>
 </template>
 
 <script>
 export default {
-  name: 'Products'
+  name: 'SUPackages'
 };
 </script>
 

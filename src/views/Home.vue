@@ -5,14 +5,15 @@
 <script>
 import SUHome from '@/views/super-user/SUHome';
 import EUHome from '@/views/end-user/EUHome';
-import { Authorities } from '@/app.constants';
+import { Authorities } from '@/constants/app.constants';
 
 export default {
   name: 'Home',
   components: { SUHome, EUHome },
   computed: {
     usedComponent() {
-      return this.$store.getters.roles.includes(Authorities.SUPER_USER)
+      return this.$store.getters.roles &&
+        this.$store.getters.roles.includes(Authorities.SUPER_USER)
         ? 'SUHome'
         : 'EUHome';
     }

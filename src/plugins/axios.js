@@ -3,7 +3,7 @@ import axios from 'axios';
 import store from '@/store';
 import router from '@/router';
 
-import { SERVER_API_URL } from '@/app.constants';
+import { SERVER_API_URL } from '@/constants/app.constants';
 
 axios.defaults.baseURL = SERVER_API_URL;
 

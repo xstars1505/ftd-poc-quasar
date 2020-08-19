@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
-import { FALLBACK_LOCALE, LOCALE } from './app.constants';
+import { FALLBACK_LOCALE, LOCALE } from './constants/app.constants';
 
 Vue.use(VueI18n);
 

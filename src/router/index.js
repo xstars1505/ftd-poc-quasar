@@ -37,6 +37,12 @@ const routes = [
         component: () => import('../views/Home'),
         meta: { authorities: [] }
       },
+      {
+        path: 'profile',
+        name: 'Profile',
+        component: () => import('../views/Profile'),
+        meta: { authorities: [] }
+      },
       ...superUserRoutes,
       ...endUserRoutes
     ]

@@ -1,10 +1,10 @@
 <template>
-  <p>su home</p>
+  <p>EU ordering</p>
 </template>
 
 <script>
 export default {
-  name: 'SUHome'
+  name: 'EUOrdering'
 };
 </script>
 

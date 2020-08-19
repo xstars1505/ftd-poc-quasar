@@ -1,6 +1,6 @@
 import { utcToZonedTime, zonedTimeToUtc } from 'date-fns-tz';
 import { format } from 'date-fns';
-import { DATE_TIME_FORMAT, SERVER_TIME_ZONE } from '@/app.constants';
+import { DATE_TIME_FORMAT, SERVER_TIME_ZONE } from '@/constants/app.constants';
 import i18n from '@/i18n';
 
 function convertDateTimeToUtcMils(date) {

@@ -1,10 +1,10 @@
 <template>
-  <p>su home</p>
+  <p>SU workmenu</p>
 </template>
 
 <script>
 export default {
-  name: 'SUHome'
+  name: 'SUWorkMenu'
 };
 </script>
 

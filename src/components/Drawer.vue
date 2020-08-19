@@ -9,78 +9,33 @@
     bordered
   >
     <div class="logo absolute-top">
-      <a
-        :class="
-          'logo__link ' + (enableMiniState && miniState ? 'logo--small' : '')
-        "
-      ></a>
+      <router-link to="/">
+        <a
+          :class="
+            'logo__link ' + (enableMiniState && miniState ? 'logo__small' : '')
+          "
+        ></a>
+      </router-link>
     </div>
 
     <q-scroll-area class="scroll-area">
-      <q-list padding>
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-icon name="menu_book" />
-          </q-item-section>
-
-          <q-item-section>
-            Product catalog
-          </q-item-section>
-        </q-item>
-
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-icon name="list" />
-          </q-item-section>
-
-          <q-item-section>
-            Order
-          </q-item-section>
-        </q-item>
-
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-icon name="send" />
-          </q-item-section>
-
-          <q-item-section>
-            Package
-          </q-item-section>
-        </q-item>
-
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-icon name="local_shipping" />
-          </q-item-section>
-
-          <q-item-section>
-            Deliveries
-          </q-item-section>
-        </q-item>
-
-        <q-separator />
-
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-icon name="people" />
-          </q-item-section>
-
-          <q-item-section>
-            Normal users
-          </q-item-section>
-        </q-item>
-      </q-list>
+      <MenuList :menus="menus" :mini-state="miniState" />
     </q-scroll-area>
   </q-drawer>
 </template>
 
 <script>
+import MenuList from '@/components/MenuList';
+import { Authorities } from '@/constants/app.constants';
+
 export default {
   name: 'Drawer',
+  components: { MenuList },
   data: () => ({
     drawer: false,
     miniState: true,
-    enableMiniState: false
+    enableMiniState: false,
+    menus: []
   }),
   watch: {
     $route() {
@@ -90,6 +45,7 @@ export default {
     }
   },
   created() {
+    this.getSidebarByRole();
     this.handleWindowResize();
     window.addEventListener('resize', () => {
       this.handleWindowResize();
@@ -99,6 +55,16 @@ export default {
     window.removeEventListener('resize', () => {});
   },
   methods: {
+    async getSidebarByRole() {
+      const sidebarType =
+        this.$store.getters.roles &&
+        this.$store.getters.roles.includes(Authorities.SUPER_USER)
+          ? 'SUSidebar'
+          : 'EUSidebar';
+      this.menus = await import(`@/constants/sidebar.constant`).then(
+        constant => constant[sidebarType]
+      );
+    },
     handleWindowResize() {
       const width = document.documentElement.clientWidth;
       if (width < 600) {
@@ -126,7 +92,7 @@ export default {
     transition: all ease-in-out 0.3s;
   }
 
-  &--small {
+  &__small {
     background-image: url('../assets/logo-small.svg');
     background-position: 13px center;
   }

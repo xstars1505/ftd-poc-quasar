@@ -4,10 +4,7 @@
 
 <script>
 export default {
-  name: 'EUHome',
-  created() {
-    console.log('eu');
-  }
+  name: 'EUHome'
 };
 </script>
 

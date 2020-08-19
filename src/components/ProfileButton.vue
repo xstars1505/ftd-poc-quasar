@@ -10,6 +10,14 @@
     </template>
 
     <q-list>
+      <q-item clickable v-close-popup :to="{ name: 'Profile' }">
+        <q-item-section avatar>
+          <q-icon name="account_circle" />
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>Profile</q-item-label>
+        </q-item-section>
+      </q-item>
       <q-item clickable v-close-popup @click="logout">
         <q-item-section avatar>
           <q-icon name="exit_to_app" />

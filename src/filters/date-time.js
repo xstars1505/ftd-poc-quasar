@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import DateTimeUtil from '@/utils/date-time';
-import { DATE_TIME_FORMAT } from '@/app.constants';
+import { DATE_TIME_FORMAT } from '@/constants/app.constants';
 
 Vue.filter('dateTime', function(value, format) {
   if (!value) {
