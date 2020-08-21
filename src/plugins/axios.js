@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import axios from 'axios';
 import store from '@/store';
-import router from '@/router';
 
 import { SERVER_API_URL } from '@/constants/app.constants';
 
@@ -30,7 +29,7 @@ axios.interceptors.response.use(
     ) {
       store.commit('logout');
       if (!error.config.url.includes('/logout')) {
-        sessionStorage.setItem('requested-url', router.currentRoute.fullPath);
+        sessionStorage.setItem('requested-url', window.location.pathname);
       }
     }
 

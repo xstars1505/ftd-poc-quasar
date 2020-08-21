@@ -16,6 +16,19 @@ export const authState = {
       state.userIdentity = identity;
       state.authenticated = true;
     },
+    login(state, { token, rememberMe }) {
+      if (rememberMe) {
+        localStorage.setItem('authenticationToken', token);
+      } else {
+        sessionStorage.setItem('authenticationToken', token);
+      }
+      const requestedUrl = sessionStorage.getItem('requested-url') || '/';
+      router.push(requestedUrl).then(
+        () => {},
+        () => {}
+      );
+      sessionStorage.removeItem('requested-url');
+    },
     logout(state) {
       state.userIdentity = null;
       state.authenticated = false;
@@ -25,6 +38,17 @@ export const authState = {
     }
   },
   actions: {
+    login({ commit }, { username, password, rememberMe }) {
+      axios
+        .post('auth/login', {
+          username,
+          password,
+          rememberMe
+        })
+        .then(data => {
+          commit('login', { token: data.data.access_token, rememberMe });
+        });
+    },
     logout({ commit }) {
       axios.post('auth/logout', {}).then(
         () => commit('logout'),

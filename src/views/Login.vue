@@ -42,8 +42,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   username: 'Login',
   data() {
@@ -55,31 +53,11 @@ export default {
   },
   methods: {
     onSubmit() {
-      axios
-        .post('auth/login', {
-          username: this.username,
-          password: this.password,
-          rememberMe: this.rememberMe
-        })
-        .then(data => {
-          const token = data.data.access_token;
-          if (this.rememberMe) {
-            localStorage.setItem('authenticationToken', token);
-          } else {
-            sessionStorage.setItem('authenticationToken', token);
-          }
-          if (sessionStorage.getItem('requested-url')) {
-            this.$router
-              .push(sessionStorage.getItem('requested-url') || '/')
-              .then(
-                () => {},
-                () => {}
-              );
-            sessionStorage.removeItem('requested-url');
-          } else {
-            this.$router.push('/');
-          }
-        });
+      this.$store.dispatch('login', {
+        username: this.username,
+        password: this.password,
+        rememberMe: this.rememberMe
+      });
     },
     onReset() {
       this.username = null;
