@@ -7,7 +7,6 @@
     :loading="loading"
   >
     <template v-slot:body-cell-edit="props">
-      {{ test(props) }}
       <q-td class="text-center" :props="props">
         <q-btn
           flat
@@ -78,9 +77,6 @@ export default {
     this.fetchData();
   },
   methods: {
-    test(d) {
-      console.log(d);
-    },
     fetchData() {
       const mock = [
         {

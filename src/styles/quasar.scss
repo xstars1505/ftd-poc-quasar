@@ -1,6 +1,6 @@
 @import "./quasar.variables.scss";
 @import "~quasar-styl";
-// @import '~quasar-addon-styl';
+@import '~quasar-addon-styl';
 
 body {
   margin: 0;
@@ -16,4 +16,9 @@ body {
 .q-placeholder::placeholder {
   color: #c0ccda;
   opacity: 1;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }

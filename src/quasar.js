@@ -69,7 +69,7 @@ Vue.use(Quasar, {
   },
   directives: { ClosePopup, Ripple },
   plugins: {},
-  frameworks: {
+  framework: {
     cssAddon: true
   },
   lang: lang
