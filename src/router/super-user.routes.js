@@ -2,9 +2,17 @@ import { Authorities } from '@/constants/app.constants';
 
 export default [
   {
-    path: '/su-products',
-    name: 'SUProducts',
-    component: () => import('../views/super-user/SUProductsMaster'),
+    path: '/products-master',
+    name: 'ProductsMaster',
+    component: () =>
+      import('../views/super-user/product-master/SUProductsMaster'),
+    meta: { authorities: [Authorities.SUPER_USER] }
+  },
+  {
+    path: '/products-master/:id',
+    name: 'ProductsMasterDetail',
+    component: () =>
+      import('../views/super-user/product-master/SUProductsMasterDetail'),
     meta: { authorities: [Authorities.SUPER_USER] }
   },
   {

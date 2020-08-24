@@ -1,10 +1,10 @@
 <template>
-  <p>SU products master</p>
+  <p>products master detail</p>
 </template>
 
 <script>
 export default {
-  name: 'SUProductsMaster'
+  name: 'SUProductsMasterDetail'
 };
 </script>
 

@@ -1,6 +1,6 @@
 export const SUSidebar = [
   {
-    to: { name: 'SUProducts' },
+    to: { name: 'ProductsMaster' },
     icon: 'menu_book',
     label: 'Product master'
   },

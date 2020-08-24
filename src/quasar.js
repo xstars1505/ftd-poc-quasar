@@ -27,6 +27,8 @@ import {
   QScrollArea,
   QSelect,
   QSeparator,
+  QTable,
+  QTd,
   QToolbar,
   QToolbarTitle,
   QTooltip,
@@ -59,6 +61,8 @@ Vue.use(Quasar, {
     QList,
     QItem,
     QSeparator,
+    QTable,
+    QTd,
     QItemSection,
     QSelect,
     QItemLabel
